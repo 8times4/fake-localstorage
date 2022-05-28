@@ -46,7 +46,8 @@
 
         // If Storage exists we modify it to write to our fakeLocalStorage object instead.
         // If Storage does not exist we create an empty object.
-        if (window.Storage && window.localStorage) {
+        //we first check if we're in an iframe with allow-same-origin
+        if (window.self !== window.top && window.Storage) {
             storage = window.Storage.prototype;
         } else {
             // We don't bother implementing a fake Storage object
